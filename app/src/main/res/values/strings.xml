@@ -7,5 +7,7 @@
     <string name="enter_email">Enter email</string>
     <string name="enter_password">Enter password</string>
     <string name="field_is_empty">Field is empty</string>
+    <string name="done">Done</string>
+    <string name="fatal_heals">We recommend that you go to the hospital because your condition is close to critical.</string>
     <string name="sign_out">Sign out</string>
 </resources>

@@ -9,7 +9,7 @@ class LoginPresenterImpl(var view: LoginContract.View?) : LoginContract.Presente
 
     override fun login(password: String) {
         if (serverOk) {
-            SPUtil.saveUserModel(UserModel(""))
+            SPUtil.saveUserModel(UserModel("", true))
             view?.showResponseOk()
         } else {
             serverOk = true

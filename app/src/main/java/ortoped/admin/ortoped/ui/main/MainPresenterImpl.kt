@@ -13,7 +13,11 @@ class MainPresenterImpl(var view: MainContract.View?) : MainContract.Presenter {
 
     override fun getNewData() {
         val list: ArrayList<ExerciseModel> = ArrayList()
-        list.add(ExerciseModel(System.currentTimeMillis().toString(), System.currentTimeMillis().toString(), status))
+        if (status) {
+            list.add(ExerciseModel(System.currentTimeMillis().toString(), System.currentTimeMillis().toString(), 0))
+        } else {
+            list.add(ExerciseModel(System.currentTimeMillis().toString(), System.currentTimeMillis().toString(), 1))
+        }
         status = !status
         HelperExercise().addNewExerciseModels(list)
         getAllExercises()

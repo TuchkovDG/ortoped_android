@@ -1,6 +1,7 @@
 package ortoped.admin.ortoped.ui.main
 
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivity
@@ -8,8 +9,10 @@ import ortoped.admin.ortoped.R
 import ortoped.admin.ortoped.model.ExerciseModel
 import ortoped.admin.ortoped.ui.base.BaseActivity
 import ortoped.admin.ortoped.ui.exercise.ExerciseActivity
+import ortoped.admin.ortoped.ui.hospital.HospitalActivity
 import ortoped.admin.ortoped.ui.main.adapter.ExerciseListAdapter
 import ortoped.admin.ortoped.ui.settings.SettingActivity
+import ortoped.admin.ortoped.util.SPUtil
 
 class MainActivity : BaseActivity(), MainContract.View, ExerciseListAdapter.MainListActivityListener {
 
@@ -23,9 +26,14 @@ class MainActivity : BaseActivity(), MainContract.View, ExerciseListAdapter.Main
 
     override fun initViewsAndData() {
         presenter = MainPresenterImpl(this)
+        initOnClickListener()
+        val userModel = SPUtil.getUserModel()
+        if (userModel != null && userModel.statusOfHeals) {
+            srl_exercise_data.visibility = View.GONE
+            ll_fatal_heals.visibility = View.VISIBLE
+        }
         initSwipeRefreshLayout()
         initListAdapter()
-        initOnClickListener()
     }
 
     override fun onResume() {
@@ -65,6 +73,9 @@ class MainActivity : BaseActivity(), MainContract.View, ExerciseListAdapter.Main
     private fun initOnClickListener() {
         iv_main_setting.setOnClickListener {
             startActivity<SettingActivity>()
+        }
+        ll_fatal_heals.setOnClickListener {
+            startActivity<HospitalActivity>()
         }
     }
 }

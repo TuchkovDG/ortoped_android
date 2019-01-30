@@ -42,6 +42,9 @@
             android:name=".ui.exercise.ExerciseActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.hospital.HospitalActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.settings.SettingActivity"
             android:screenOrientation="portrait" />
     </application>

@@ -34,7 +34,7 @@ class ExerciseListAdapter(private val context: Context,
 
         fun bind(exercise: ExerciseModel) {
             view.tv_title.text = exercise.title
-            if (exercise.status) {
+            if (exercise.status == 1) {
                 view.iv_status.imageResource = R.drawable.ic_check_black_24dp
             } else {
                 view.iv_status.imageResource = R.drawable.ic_close_black_24dp

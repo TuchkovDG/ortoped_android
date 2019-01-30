@@ -13,7 +13,7 @@ class HelperExercise : SQLiteOpenHelper(App.instance.applicationContext, DATABAS
                 + COLUMN_ID + " INTEGER PRIMARY KEY,"
                 + COLUMN_TITLE + " TEXT,"
                 + COLUMN_DESCRIPTION + " TEXT,"
-                + COLUMN_STATUS + " BLOB" + ")"))
+                + COLUMN_STATUS + " INTEGER" + ")"))
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -42,6 +42,23 @@ class HelperExercise : SQLiteOpenHelper(App.instance.applicationContext, DATABAS
         db.close()
     }
 
+    fun addOrUpdateExerciseModel(exercise: ExerciseModel?) {
+        val db = this.writableDatabase
+
+        val cursor = db.query(TABLE_EXERCISES, null, "$COLUMN_TITLE = ?",
+                arrayOf(exercise?.title), null, null, null)
+        val cv = ContentValues()
+        cv.put(COLUMN_TITLE, exercise?.title)
+        cv.put(COLUMN_DESCRIPTION, exercise?.description + " hui")
+        cv.put(COLUMN_STATUS, exercise?.status)
+        if (cursor.moveToFirst()) {
+            db.update(TABLE_EXERCISES, cv, "$COLUMN_TITLE = ?", arrayOf(exercise?.title))
+        }
+        cursor.close()
+
+        db.close()
+    }
+
     fun getAllExercises(): ArrayList<ExerciseModel> {
         val db = this.writableDatabase
         val cursor = db.query(TABLE_EXERCISES, null, null,
@@ -55,7 +72,7 @@ class HelperExercise : SQLiteOpenHelper(App.instance.applicationContext, DATABAS
                 events.add(ExerciseModel(
                         cursor.getString(cursor.getColumnIndex(COLUMN_TITLE)),
                         cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)),
-                        cursor.getInt(cursor.getColumnIndex(COLUMN_STATUS)) == 0))
+                        cursor.getInt(cursor.getColumnIndex(COLUMN_STATUS))))
             } while (cursor.moveToNext())
             cursor.close()
             db.close()

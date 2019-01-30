@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ортопед</string>
+    <string name="login">Увійти</string>
+    <string name="registration">Зареєструватись</string>
+    <string name="enter_name">Введіть ім\'я</string>
+    <string name="enter_address">Введіть адресу</string>
+    <string name="enter_email">Введіть email</string>
+    <string name="enter_password">Введіть пароль</string>
+    <string name="field_is_empty">Поле порожнє</string>
+    <string name="done">Виконано</string>
+    <string name="fatal_heals">Ми рекомендуємо вам звернутися до лікарні, оскільки ваш стан близький до критичного.</string>
+    <string name="sign_out">Вийти з аккаунта</string>
+</resources>

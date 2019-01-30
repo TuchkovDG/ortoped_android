@@ -9,7 +9,7 @@ class RegistrationPresenterImpl(var view: RegistrationContract.View?) : Registra
 
     override fun registration(name: String, address: String, email: String, password: String) {
         if (serverOk) {
-            SPUtil.saveUserModel(UserModel(""))
+            SPUtil.saveUserModel(UserModel("", false))
             view?.showResponseOk()
         } else {
             serverOk = true
